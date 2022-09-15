@@ -6,6 +6,7 @@ import DropDown from "./DropDown";
 import arrowRight from "../../assets/ArrowRight2.svg";
 //child
 const TreeElement = ({
+  checked,
   node,
   treeNode,
   setTreeNode = (f) => f,
@@ -30,40 +31,73 @@ const TreeElement = ({
     // }
   }, []);
 
-  let children = [];
   const getAllChild = (node) => {
-    children.push(node.children);
+    let children = [];
+    if (node.children) {
+      node.children.forEach((child) => {
+        children.push(child);
+        children.push(...getAllChild(child));
+      });
+      return children;
+    } else {
+      return children;
+    }
+  };
+
+  const selectNode = (nodesList, parent = []) => {
+    parent.forEach((node) => {
+      let isActive = nodesList.find((item) => {
+        return item.id === node.id;
+      });
+      // console.log(isActive);
+      node.isActive = !!isActive;
+      selectNode(nodesList, node.children);
+    });
+    return treeNode;
+    // setTreeNode(treeNode);
   };
 
   const checkBoxParentHandler = (e) => {
-    // console.log(e.target.checked);
-    getAllChild(node);
+    let children = getAllChild(node);
 
-    let parentIndex = treeNode.findIndex((item) => {
-      return item.name === e.target.name;
-    });
-    // console.log(parentIndex);
-    setTreeNode(
-      (treeNode[parentIndex].isActive = !treeNode[parentIndex].isActive),
-    );
-    children.forEach((childs) => {
-      childs.map((child, i) => {
-        let index = treeNode.findIndex((item) => {
-          return item.name === e.target.name;
-        });
-        const update = [...treeNode];
-        update[index].children[i].isActive =
-          !update[index].children[i].isActive;
-        setTreeNode(update);
-      });
-    });
-    if (e.target.checked) {
-      setActive((prev) => ({
-        ...prev,
-        activeParent: [...prev.activeParent, [e.target.name, e.target.id]],
-      }));
-    }
+    let N = selectNode(children, treeNode);
+    console.log(N);
+    setTreeNode(N);
+
+    // console.log(children);
+
+    // let parentIndex = treeNode.findIndex((item) => {
+    //   return item.name === e.target.name;
+    // });
+    // setTreeNode(
+    //   (treeNode[parentIndex].isActive = !treeNode[parentIndex].isActive),
+    // );
+
+    // let allNodes = getAllChild({ children: treeNode });
+    // console.log(allNodes);
+    // allNodes.forEach((node) => {
+    //   let index = children.findIndex((item) => {
+    //     return item.id === node.id;
+    //   });
+    //   console.log(index);
+
+    //   let update = [...treeNode];
+    // });
+
+    // if (e.target.checked) {
+    //   setActive((prev) => ({
+    //     ...prev,
+    //     activeParent: [...prev.activeParent, [e.target.name, e.target.id]],
+    //   }));
+    // }
   };
+
+  // let index = treeNode.findIndex((item) => {
+  //   return item.name === childs.name;
+  // });
+  // const update = [...treeNode];
+  // update[index].children[i].isActive = !update[index].children[i].isActive;
+  // setTreeNode(update);
 
   const checkBoxChildHandler = (e) => {
     if (e.target.checked) {

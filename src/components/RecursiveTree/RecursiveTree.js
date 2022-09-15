@@ -32,6 +32,7 @@ const RecursiveTree = ({ treeNode, depthlevel, setTreeNode }) => {
             activeNode={active}
             setActive={setActive}
             depthlevel={depthlevel}
+            checked={checked}
           />
         );
       })}
