@@ -1,16 +1,13 @@
 import React from "react";
 import TreeElement from "./TreeElement";
-import FormControlLabel from "@mui/material/FormControlLabel";
 
 const DropDown = ({
-  treeNode,
-  checked = {},
-  setChecked = (f) => f,
   childnode,
+  treeNode,
+  setTreeNode = (f) => f,
   depthlevel,
-  dropdown,
   activeNode = [],
-  setActive,
+  setActive = (f) => f,
 }) => {
   depthlevel = depthlevel + 1;
   // console.log(childnode);
@@ -19,10 +16,9 @@ const DropDown = ({
       {childnode.map((child, i) => {
         return (
           <TreeElement
-            treeNode={treeNode}
-            checked={checked}
-            setChecked={setChecked}
             node={child}
+            treeNode={treeNode}
+            setTreeNode={setTreeNode}
             key={i}
             activeNode={activeNode}
             setActive={setActive}

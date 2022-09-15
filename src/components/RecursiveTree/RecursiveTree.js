@@ -4,7 +4,7 @@ import TreeElement from "./TreeElement";
 
 //parent
 const RecursiveTree = ({ treeNode, depthlevel, setTreeNode }) => {
-  console.log(treeNode);
+  // console.log(treeNode);
   // console.log(depthlevel);
 
   const [checked, setChecked] = useState(treeNode.isActive);
@@ -17,8 +17,7 @@ const RecursiveTree = ({ treeNode, depthlevel, setTreeNode }) => {
   const checkRef = useRef([]);
 
   useEffect(() => {
-    // console.log(checkedState, "checkedState");
-    // console.log(active, "active");
+    console.log(active, "active");
   }, [active, checkRef]);
 
   return (
@@ -26,7 +25,6 @@ const RecursiveTree = ({ treeNode, depthlevel, setTreeNode }) => {
       {treeNode.map((node, index) => {
         return (
           <TreeElement
-            checkRef={checkRef}
             node={node}
             treeNode={treeNode}
             setTreeNode={setTreeNode}
@@ -34,8 +32,6 @@ const RecursiveTree = ({ treeNode, depthlevel, setTreeNode }) => {
             activeNode={active}
             setActive={setActive}
             depthlevel={depthlevel}
-            checked={checked}
-            setChecked={setChecked}
           />
         );
       })}

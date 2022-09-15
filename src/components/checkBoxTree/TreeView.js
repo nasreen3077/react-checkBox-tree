@@ -16,9 +16,6 @@ const TreeView = ({ nodes }) => {
     setExpanded(expanded);
   };
 
-  const xyz = () => {
-    console.log(<CheckboxTree />);
-  };
   return (
     <div>
       <CheckboxTree
@@ -32,8 +29,6 @@ const TreeView = ({ nodes }) => {
         onCheck={onCheck}
         onExpand={onExpand}
       />
-
-      {/* <button onClick={xyz}>xyz</button> */}
     </div>
   );
 };

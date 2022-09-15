@@ -1,12 +1,10 @@
 .App {
   text-align: center;
-
   width: 100%;
   height: 100vh;
 }
 #root {
   height: 100vh !important;
-  background-color: aliceblue;
 }
 .App-header {
   background-color: #282c34;

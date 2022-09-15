@@ -24,31 +24,33 @@ export const nodes = [
           {
             id: 7,
             name: "src :",
+            isActive: false,
             children: [
-              { id: 8, name: "index : ts" },
-              { id: 9, name: "bootstrap : ts" },
+              { id: 8, name: "index : ts", isActive: false },
+              { id: 9, name: "bootstrap : ts", isActive: false },
             ],
           },
         ],
       },
     ],
   },
-  //     {
-  //       id: 10,
-  //       name: "material2 :",
-  //       isActive: false,
-  //       children: [
-  //         {
-  //           id: 11,
-  //           name: "src :",
-  //           children: [
-  //             { id: 12, name: "v-btn : ts" },
-  //             { id: 13, name: "v-card : ts" },
-  //             { id: 14, name: "v-window : ts" },
-  //           ],
-  //         },
-  //       ],
-  //     },
+  {
+    id: 10,
+    name: "material2 :",
+    isActive: false,
+    children: [
+      {
+        id: 11,
+        name: "src :",
+        isActive: false,
+        children: [
+          { id: 12, name: "v-btn : ts", isActive: false },
+          { id: 13, name: "v-card : ts", isActive: false },
+          { id: 14, name: "v-window : ts", isActive: false },
+        ],
+      },
+    ],
+  },
   //   ],
   // },
   // {
