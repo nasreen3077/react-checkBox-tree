@@ -8,6 +8,8 @@ const DropDown = ({
   depthlevel,
   activeNode = [],
   setActive = (f) => f,
+  setIndeterminate = (f) => f,
+  indeterminate,
 }) => {
   depthlevel = depthlevel + 1;
   // console.log(childnode);
@@ -16,6 +18,8 @@ const DropDown = ({
       {childnode.map((child, i) => {
         return (
           <TreeElement
+            indeterminate={indeterminate}
+            setIndeterminate={setIndeterminate}
             node={child}
             treeNode={treeNode}
             setTreeNode={setTreeNode}

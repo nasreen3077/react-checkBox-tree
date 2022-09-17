@@ -19,9 +19,9 @@ function App() {
             depthlevel={depthlevel}
           />
         </div>
-        {/* <div className='checkbox-tree'>
+        <div className='checkbox-tree'>
           <TreeView nodes={items} />
-        </div> */}
+        </div>
       </div>
     </div>
   );

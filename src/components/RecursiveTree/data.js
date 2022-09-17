@@ -51,35 +51,53 @@ export const nodes = [
       },
     ],
   },
-  //   ],
-  // },
+
+  {
+    id: 15,
+    name: "Downloads :",
+    isActive: false,
+    children: [
+      { id: 16, name: "October : pdf", isActive: false },
+      { id: 17, name: "November : pdf", isActive: false },
+      { id: 18, name: "Tutorial : html", isActive: false },
+    ],
+  },
+  {
+    id: 19,
+    name: "Videos :",
+    isActive: false,
+    children: [
+      {
+        id: 20,
+        name: "Tutorials :",
+        isActive: false,
+        children: [
+          { id: 21, name: "Basic layouts : mp4", isActive: false },
+          { id: 22, name: "Advanced techniques : mp4", isActive: false },
+          { id: 23, name: "All about app : dir", isActive: false },
+        ],
+      },
+      { id: 24, name: "Intro : mov", isActive: false },
+      { id: 25, name: "Conference introduction : avi", isActive: false },
+    ],
+  },
   // {
-  //   id: 15,
-  //   name: "Downloads :",
+  //   id: 19,
+  //   name: "Videos :",
   //   isActive: false,
   //   children: [
-  //     { id: 16, name: "October : pdf" },
-  //     { id: 17, name: "November : pdf" },
-  //     { id: 18, name: "Tutorial : html" },
+  //     { id: 24, name: "Intro : mov", isActive: false },
+  //     { id: 25, name: "Conference introduction : avi", isActive: false },
+  //     {
+  //       id: 20,
+  //       name: "Tutorials :",
+  //       isActive: false,
+  //       children: [
+  //         { id: 21, name: "Basic layouts : mp4", isActive: false },
+  //         { id: 22, name: "Advanced techniques : mp4", isActive: false },
+  //         { id: 23, name: "All about app : dir", isActive: false },
+  //       ],
+  //     },
   //   ],
   // },
-  //   {
-  //     id: 19,
-  //     name: "Videos :",
-  //     isActive: false,
-  //     children: [
-  //       {
-  //         id: 20,
-  //         name: "Tutorials :",
-  //         isActive: false,
-  //         children: [
-  //           { id: 21, name: "Basic layouts : mp4", isActive: false },
-  //           { id: 22, name: "Advanced techniques : mp4", isActive: false },
-  //           { id: 23, name: "All about app : dir", isActive: false },
-  //         ],
-  //       },
-  //       { id: 24, name: "Intro : mov", isActive: false },
-  //       { id: 25, name: "Conference introduction : avi", isActive: false },
-  //     ],
-  //   },
 ];
