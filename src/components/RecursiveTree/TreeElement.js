@@ -4,38 +4,23 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import DropDown from "./DropDown";
 import arrowRight from "../../assets/ArrowRight2.svg";
-import { Minus, MinusSquare } from "iconsax-react";
+
 //child
 const TreeElement = ({
-  // checked,
-  setIndeterminate = (f) => f,
-  indeterminate,
   node,
   treeNode,
   setTreeNode = (f) => f,
   depthlevel,
   activeNode = [],
-  setActive = (f) => f,
+  setActiveNode = (f) => f,
 }) => {
-  // console.log(node);
   const [dropdown, setDropdown] = useState(false);
 
   useEffect(() => {
-    if (node.isActive && depthlevel === 0) {
-      setActive((prev) => ({
-        ...prev,
-        activeParent: [...prev.activeParent, [node.name, node.id]],
-      }));
+    if (node.isActive) {
+      setActiveNode([...activeNode, node.name]);
     }
-
-    // console.log(indeterminate);
-    // if (node?.children?.isActive) {
-    //   setActive((prev) => ({
-    //     ...prev,
-    //     activeChildren: [...prev.activeChildren, [node.name, node.id]],
-    //   }));
-    // }
-  }, [indeterminate]);
+  }, []);
 
   const getAllChild = (node) => {
     let children = [];
@@ -51,7 +36,6 @@ const TreeElement = ({
   };
 
   const findParent = (item, data) => {
-    // console.log(item);
     const allNodes = getAllChild({ children: data }); // flat tree nodes
     let parent;
     for (let i = 0; i < allNodes.length; i++) {
@@ -64,13 +48,9 @@ const TreeElement = ({
     return parent;
   };
 
-  const selectParent = (node, tree = [], checked) => {
-    // console.log(nodesList);
-    // console.log(tree);
+  const selectParent = (node, tree = []) => {
     let nodeparent = findParent(node, tree);
-    // console.log(nodeparent);
     let ChildOfNodeParent = getAllChild(nodeparent);
-
     let count = 0;
     for (let i = 0; i < ChildOfNodeParent.length; i++) {
       const node = ChildOfNodeParent[i];
@@ -78,18 +58,9 @@ const TreeElement = ({
         count = count + 1;
       }
     }
-
     if (count === ChildOfNodeParent.length) {
       return nodeparent;
     }
-    // if (count === ChildOfNodeParent.length) {
-    //   setIndeterminate(false);
-    //   return nodeparent;
-    // } else {
-    //   if (!nodeparent.isActive) {
-    //     setIndeterminate(true);
-    //   }
-    // }
   };
 
   const selectNode = (nodesList, tree = [], checked) => {
@@ -109,7 +80,6 @@ const TreeElement = ({
     let children = getAllChild(node);
     let treeCopy = [...treeNode];
     let updateTree = selectNode([...children, node], treeCopy, checked);
-    // console.log(updateTree);
     setTreeNode(updateTree);
     if (!checked) {
       let parent = findParent(node, updateTree);
@@ -117,13 +87,11 @@ const TreeElement = ({
         parent.isActive = false;
       }
     } else {
+      setActiveNode([...activeNode, node.name]);
       let pNode = selectParent(node, treeCopy);
       if (pNode) {
         pNode.isActive = true;
-        // let u = findParent(pNode, treeCopy);
-        // if (u) {
-        //   u.isActive = true;
-        // }
+        setActiveNode([...activeNode, pNode.name]);
       }
     }
   };
@@ -131,16 +99,6 @@ const TreeElement = ({
   const ParentOnclick = () => {
     setDropdown((prev) => !prev);
   };
-
-  // const indeterminateHandler = () => {
-  //   console.log(indeterminate);
-  //   if (node.isActive && node.children) {
-  //     node.children.forEach((child) => {
-
-  //     })
-  //   }
-  // setIndeterminate(true);
-  // };
   return (
     <div>
       <div>
@@ -161,11 +119,6 @@ const TreeElement = ({
                   name={node.name}
                   control={
                     <Checkbox
-                      // indeterminate={indeterminate}
-                      // indeterminate={node.isActive ? false : true}
-                      // indeterminateIcon={
-                      //   <MinusSquare size='22' color='#FF8A65' />
-                      // }
                       id={node.id.toString()}
                       checked={node.isActive}
                       onChange={checkBoxHandler}
@@ -174,7 +127,7 @@ const TreeElement = ({
                 />
               </div>
 
-              {!dropdown && (
+              {dropdown && (
                 <DropDown
                   treeNode={treeNode}
                   setTreeNode={setTreeNode}
@@ -182,9 +135,7 @@ const TreeElement = ({
                   depthlevel={depthlevel}
                   dropdown={dropdown}
                   activeNode={activeNode}
-                  setActive={setActive}
-                  indeterminate={indeterminate}
-                  setIndeterminate={setIndeterminate}
+                  setActiveNode={setActiveNode}
                 />
               )}
             </Box>
@@ -199,7 +150,6 @@ const TreeElement = ({
                   id={node.id.toString()}
                   checked={node.isActive}
                   onChange={checkBoxHandler}
-                  // onClick={xyz}
                 />
               }
             />

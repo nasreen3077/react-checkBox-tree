@@ -10,9 +10,10 @@ function App() {
   const depthlevel = 0;
   return (
     <div className='App'>
-      <h4 style={{ marginTop: "100px" }}>TreeView</h4>
+      <h4 style={{ marginTop: "10px" }}>TreeView</h4>
       <div className='treeview'>
         <div className='RecursiveTree'>
+          <h4>RecursiveTree</h4>
           <RecursiveTree
             treeNode={treeNode}
             setTreeNode={setTreeNode}
@@ -20,6 +21,7 @@ function App() {
           />
         </div>
         <div className='checkbox-tree'>
+          <h4 style={{ marginTop: "10px" }}>Checkbox Tree</h4>
           <TreeView nodes={items} />
         </div>
       </div>
